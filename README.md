@@ -1,22 +1,45 @@
-🏆🔥⚽ **F A N A T I X   S P O R T S** ⚽🔥🏆
+# 🏆⚽ FANATIX SPORTS ⚽🏆
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-🏀 O MAIOR CATÁLOGO ESPORTIVO DO MOMENTO 🏀
-━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔥 O maior catálogo esportivo para verdadeiros fanáticos por esporte! 🔥
 
-🔥 Tudo para os verdadeiros apaixonados por esporte!
-👟 Tênis esportivos
-🎽 Camisas de times
-🏋️ Equipamentos fitness
-⚽ Artigos esportivos
-🎮 Produtos gamer & lifestyle
-🏀 Basquete • Futebol • Academia • Running
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-💚🖤 QUALIDADE • ESTILO • PERFORMANCE 🖤💚
-━━━━━━━━━━━━━━━━━━━━━━━━━━
+## 📖 Sobre o Projeto
 
-🚀 Entre para o universo da
-🔥⚡ **FANATIX SPORTS** ⚡🔥
+O **FANATIX SPORTS** é um catálogo esportivo moderno desenvolvido para apresentar produtos e conteúdos relacionados ao mundo dos esportes de forma prática, rápida e estilosa.  
 
-🏆 “Sua paixão pelo esporte começa aqui!” 🏆
+O projeto possui uma interface visual inspirada no universo esportivo, trazendo uma experiência dinâmica e intuitiva para os usuários.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+💻 Front-end:
+- HTML5
+- CSS3
+- JavaScript
+
+---
+
+## 🎯 Objetivo
+
+O objetivo do projeto é criar um catálogo esportivo moderno e responsivo para exibição de produtos esportivos, acessórios e conteúdos relacionados ao esporte.
+
+---
+
+## ✨ Funcionalidades
+
+✅ Catálogo esportivo moderno  
+✅ Interface responsiva  
+✅ Design esportivo premium  
+✅ Navegação intuitiva  
+✅ Organização visual dos produtos  
+✅ Layout otimizado para dispositivos móveis  
+
+---
+
+# 💚🖤 FANATIX SPORTS 🖤💚
+
+### ⚡ “Sua paixão pelo esporte começa aqui!” ⚡
+
+---
