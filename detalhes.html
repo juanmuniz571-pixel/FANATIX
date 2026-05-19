@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Detalhes do Produto</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+img {
+    width: 300px;
+    margin: 20px 0;
+}
+
+.price {
+    font-size: 24px;
+    color: #00ff88;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container" id="produto"></div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+
+const data = [
+{
+id: 1,
+name: "CHUTEIRA MERCURIAL VAPOR 16",
+cat: "futebol",
+price: 799,
+img: "img/MERCURIAL.png",
+desc: " alta tração para arrancadas explosivas, tamanho brasileiro do 37 ao 46"
+},
+{
+id: 2,
+name: "Jersey Stealth 1.0",
+cat: "futebol",
+price: 250,
+img: "img/camisa seath.png",
+desc: "Uma camiseta de uso diário com design tático, impressão DTF e alta durabilidade. Tamanho do PP ao G10."
+},
+{
+id: 3,
+name: "Meião Compression",
+cat: "futebol",
+price: 85,
+img: "img/meia de compressão.png",
+desc: "Meião com compressão graduada que melhora circulação e reduz fadiga muscular,Tamanho 35 ao 44."
+},
+{
+id: 4,
+name: "NIKE LEBRON WITNESS 8",
+cat: "basquete",
+price: 950,
+img: "img/nike lebron witness 8.png",
+desc: "é um tênis de basquete de alto desempenho voltado para agilidade e suporte, projetado para oferecer excelente custo-benefício tamanho do 41 ao 56."
+},
+{
+id: 5,
+name: "Shorts PRO GRID NYX",
+cat: "basquete",
+price: 180,
+img: "img/Bermuda Pro Grid NYX Fiber.png",
+desc: "Short leve com tecnologia anti-suor e máxima mobilidade em quadra tamanho do P ao G8."
+},
+{
+id: 6,
+name: "REGATA DRI FIT",
+cat: "basquete",
+price: 210,
+img: "img/REGATA DRI FIT.png",
+desc: "Regata com tecido Dri-Fit que elimina o suor e mantém o corpo fresco tamanho do P ao G9."
+},
+{
+id: 7,
+name: "Knee Guards Pro",
+cat: "volei",
+price: 120,
+img: "img/Knee Guards Pro.png",
+desc: "Joelheira com proteção reforçada para impactos e mergulhos tamanho P,M,G,GG,G1,G2 E G3       ."
+},
+{
+id: 8,
+name: "Bola Mikasa V200W",
+cat: "volei",
+price: 480,
+img: "img/Bola Mikasa V200W.png",
+desc: "Bola oficial com excelente controle e estabilidade no ar."
+},
+{
+id: 9,
+name: "Rattan Ball X-1",
+cat: "sepak",
+price: 85,
+img: "img/Rattan Ball X-1.png",
+desc: "Bola resistente ideal para partidas intensas de Sepak Takraw."
+},
+{
+id: 10,
+name: "Takraw Flex Shoes",
+cat: "sepak",
+price: 320,
+img: "img/Takraw Flex Shoes.png",
+desc: "Tênis flexível com aderência máxima para movimentos acrobáticos."
+},
+{
+id: 11,
+name: "Carbon Stick Pro",
+cat: "hoquei",
+price: 450,
+img: "img/Carbon Stick Pro.png",
+desc: "Stick de carbono leve com precisão e potência nos golpes."
+},
+{
+id: 12,
+name: "Patins Tron Stryker SB Junior",
+cat: "hoquei",
+price: 680,
+img: "img/Patins Tron Stryker SB Junior.png",
+desc: "Equipamento de alto desempenho com design hidrodinâmico."
+},
+{
+id: 13,
+name: "Luva Sherwood Rekker Legend 4",
+cat: "hoquei",
+price: 190,
+img: "img/Luva Sherwood Rekker Legend 4.png",
+desc: "Luvas resistentes com proteção e conforto para o jogo."
+}
+];
+
+
+const produto = data.find(p => p.id == id);
+
+
+const div = document.getElementById('produto');
+
+if (produto) {
+    div.innerHTML = `
+        <h1>${produto.name}</h1>
+        <img src="${produto.img}">
+        <p class="price">R$ ${produto.price}</p>
+        <p>Categoria: ${produto.cat}</p>
+        <p>${produto.desc}</p>
+    `;
+} else {
+    div.innerHTML = "<h1>Produto não encontrado</h1>";
+}
+</script>
+
+</body>
+</html>

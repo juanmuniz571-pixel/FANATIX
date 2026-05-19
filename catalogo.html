@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>site confere aqui | Performance Tech Catalog</title>
+    <link rel="stylesheet" href="catalogo.css">
+</head>
+
+<body>
+
+    <div class="modal" id="product-modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()"> <button class="modal-close"
+                onclick="closeModal()">&times;</button>
+            <img src="" alt="Ampliada" id="modal-img">
+            <div class="modal-caption" id="modal-caption"></div>
+        </div>
+    </div>
+
+    <header>
+        <h1>FANATIX</h1>
+        <p>CATÁLOGO DE PRODUTOS E MATERIAIS ESPORTIVOS</p>
+    </header>
+
+    <nav id="filter-nav">
+        <button class="filter-btn active" onclick="filterData('todos')">All Gear</button>
+        <button class="filter-btn" onclick="filterData('futebol')">Futebol</button>
+        <button class="filter-btn" onclick="filterData('basquete')">Basquete</button>
+        <button class="filter-btn" onclick="filterData('volei')">Vôlei</button>
+        <button class="filter-btn" onclick="filterData('sepak')">Sepak Takraw</button>
+        <button class="filter-btn" onclick="filterData('hoquei')">Hóquei Sub</button>
+    </nav>
+
+    <div class="container">
+        <div class="catalog-grid" id="catalog-grid">
+        </div>
+
+        <div class="load-more-container">
+            <button id="btn-load-more" onclick="loadMore()">Carregar Mais</button>
+        </div>
+    </div>
+
+    <footer>
+        .
+    </footer>
+
+    <script>
+        // area dos produtos 
+        const rawData = [
+            // FUTEBOL
+            { name: "CHUTEIRA MERCURIAL VAPOR 16", cat: "futebol", price: 799, img: "img/MERCURIAL.png" },
+            { name: "Jersey Stealth 1.0", cat: "futebol", price: 250, img: "img/camisa seath.png" },
+            { name: "Meião Compression", cat: "futebol", price: 85, img: "img/meia de compressão.png" },
+
+            // BASQUETE
+            { name: "NIKE LEBRON WITNESS 8", cat: "basquete", price: 950, img: "img/nike lebron witness 8.png" },
+            { name: "Shorts PRO GRID NYX", cat: "basquete", price: 180, img: "img/Bermuda Pro Grid NYX Fiber.png" },
+            { name: "REGATA DRI FIT ", cat: "basquete", price: 210, img: "img/REGATA DRI FIT.png" },
+
+            // VOLEI
+            { name: "Knee Guards Pro", cat: "volei", price: 120, img: "img/Knee Guards Pro.png" },
+            { name: "Bola Mikasa V200W", cat: "volei", price: 480, img: "img/Bola Mikasa V200W.png" },
+
+            // SEPAK
+            { name: "Rattan Ball X-1", cat: "sepak", price: 85, img: "img/Rattan Ball X-1.png" },
+            { name: "Takraw Flex Shoes", cat: "sepak", price: 320, img: "img/Takraw Flex Shoes.png" },
+
+            // HOQUEI
+            { name: "Carbon Stick Pro", cat: "hoquei", price: 450, img: "img/Carbon Stick Pro.png" },
+            { name: "Patins Tron Stryker SB Junior", cat: "hoquei", price: 680, img: "img/Patins Tron Stryker SB Junior.png" },
+            { name: "Luva Sherwood Rekker Legend 4 ", cat: "hoquei", price: 190, img: "img/Luva Sherwood Rekker Legend 4.png" }
+        ];
+
+        let currentItems = []; // Itens atualmente filtrados
+        let itemsShown = 0;
+        const itemsPerLoad = 6; // Quantos itens carregar por vez
+
+    
+        const data = rawData.map((item, index) => ({ ...item, id: index + 1 }));
+    //
+        function renderGrid(append = false) {
+            const grid = document.getElementById('catalog-grid');
+            if (!append) grid.innerHTML = ''; // Limpa se for um novo filtro
+
+            const itemsToRender = currentItems.slice(itemsShown, itemsShown + itemsPerLoad);
+
+            const html = itemsToRender.map(item => `
+            <article class="product-card" id="card-${item.id}">
+                <div class="img-container" onclick="openModal('${item.img}', '${item.name} - R$ ${item.price}')">
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="img-overlay">
+                        <span class="view-more-icon">Ver Mais</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <span class="cat-label">${item.cat}</span>
+                    <h2 class="name">${item.name}</h2>
+                    <div class="price-box">
+                        <span class="price">R$ ${item.price}</span>
+                        <button class="btn-action" onclick="openDetails(${item.id})">
+    Detalhes
+</button>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+
+            grid.insertAdjacentHTML('beforeend', html);
+
+            
+            itemsToRender.forEach((item, index) => {
+                setTimeout(() => {
+                    document.getElementById(`card-${item.id}`).classList.add('visible');
+                }, index * 100);
+            });
+
+            itemsShown += itemsToRender.length;
+            updateLoadMoreButton();
+        }
+
+        function loadMore() {
+            renderGrid(true);
+        }
+
+        function updateLoadMoreButton() {
+            const btn = document.getElementById('btn-load-more');
+            if (itemsShown >= currentItems.length) {
+                btn.classList.add('hidden');
+            } else {
+                btn.classList.remove('hidden');
+            }
+        }
+
+    
+        function filterData(category) {
+        
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            if (event) event.currentTarget.classList.add('active');
+
+            
+            itemsShown = 0;
+
+            
+            if (category === 'todos') {
+                currentItems = data;
+            } else {
+                currentItems = data.filter(i => i.cat === category);
+            }
+
+            renderGrid(false);
+        }
+
+        
+        function openModal(imgUrl, caption) {
+            const modal = document.getElementById('product-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalCaption = document.getElementById('modal-caption');
+
+            modalImg.src = imgUrl;
+            modalCaption.textContent = caption;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Impede scroll do fundo
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.remove('open');
+            document.body.style.overflow = ''; // Restaura scroll
+        }
+
+        
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+
+        filterData('todos'); 
+
+        function openDetails(id) {
+            window.open(`detalhes.html?id=${id}`, '_blank');
+        }
+    </script>
+
+</body>
+
+</html>
